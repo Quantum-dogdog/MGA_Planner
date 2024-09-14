@@ -3,7 +3,7 @@
 本项目全名Multiple Gravity Assist Planner（引力助推规划器），又名SlingShot Trajectory Optimizer（SSTO，引力弹弓轨迹优化器），目前属于简陋的发行版本。
 
 
-# 介绍
+# 项目优点
 
 本项目与网络上已有的mga planner相比，优点是：
 
@@ -13,6 +13,41 @@
 
 （3）零依赖，除默认python库(指numpy)外，无需安装多个第三方python库。不会像别的项目一样，因为依赖库的更新、废弃而run error
 
+# 文件介绍
+
+[jplephem](https://github.com/brandon-rhodes/python-jplephem)由Brandon Rhodes大佬开发，用于他的[skyfield](https://github.com/skyfielders/python-skyfield/)项目，这里我们依据MIT license对其进行引用，这样就不用再安装SPICE了。
+
+constant.py定义了一系列常量，它们代表不同天体的标准引力参数（mu）和半径（r）等。
+
+erti.py 文件包含了一些与天体力学和轨道计算相关的功能。它包含以下方法：
+       statetoelement: 将位置和速度向量转换为轨道六要素（半长轴、轨道倾角、离心率、升交点赤经、近心点幅角、真近点角）。
+       elementtostate: 将轨道六要素转换回位置和速度向量。
+       getsma: 计算半长轴。
+       taafterdt: 计算在给定时间间隔后的真近点角。
+
+get_dv.py 文件包含了一系列计算航天器进行不同类型机动时所需速度变化量（Δv）的函数。以下是文件的主要组成部分：
+       fashedv 函数：计算从当前速度 v_now 加速到所需速度 v_need 所需的速度变化量。这个函数考虑了引力常数 mu、轨道高度 gaodu 和目标天体的半径 ra。
+       buhuodv 函数：计算从当前速度 v_now 减速到所需速度 v_arrive 所需的速度变化量。这个函数也考虑了引力常数 mu、轨道高度 gaodu 和目标天体的半径 ra。
+       dsmdv 函数：计算两个速度之间的差异。
+       flybyhou 函数：计算航天器在经过目标天体附近时所需的速度变化量。这个函数考虑了目标天体的引力常数 mu、半径 ra、飞越高度 altitude 和入射角 incidence_angle。
+
+get_mu_ra.py 文件用于计算不同天体的引力常数（μ）和半径（r）。
+
+get_r_v.py 文件用于计算特定日期和天体位置的距离（r）和速度（v）。
+
+izzo.py 文件用于解决 Lambert 问题，取自[pykep](https://github.com/esa/pykep)，依据GPL-3.0 license对其进行了微调，使其不再依赖外部hypergeometric_f函数。
+
+main.py 文件实现了一个差分进化算法，用于优化空间任务中的飞行总时间、深空机动时刻的比例系数、轨道高度、弹弓角度等参数，没有优化发射日期、发射序列、发射速度等参数，但是也可以了不是吗。
+
+mgadsm.py 文件可以根据输入的序列长度（表示空间任务的复杂性），调用不同的子函数（mga_dsm_2, mga_dsm_3, mga_dsm_4, mga_dsm_5: 这些子函数分别处理长度为2、3、4、5的序列）来计算总速度变化量（delta-v），你可以看到我写的代码是低端代码，远不如[KSP-MGA-Planner](https://github.com/Krafpy/KSP-MGA-Planner)中抽象、高等。
+
+sequence.py 文件定义行星际飞行序列。
+
+spice_kernal_reader.py 文件用于读取和解析 SPICE 核心文件，是[jplephem](https://github.com/brandon-rhodes/python-jplephem)原项目中的tmp54.py。
+
+剩下的是一些例子，主要是用天问1号的数据对结果进行交叉验证。
+
+该段介绍由[智谱清言](https://chatglm.cn/)拟稿，我润色。
 
 # 开发背景
 
