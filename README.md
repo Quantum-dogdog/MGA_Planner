@@ -12,3 +12,8 @@
 （2）免部署，no need setup，no need build，no need install，下载到本地之后，直接>>python main.py运行
 
 （3）零依赖，除默认python库(指numpy)外，无需安装多个第三方python库。不会像别的项目一样，因为依赖库的更新、废弃而run error
+
+
+# 开发历史
+
+本项目
