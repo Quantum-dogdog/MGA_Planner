@@ -14,6 +14,7 @@
 （3）零依赖，除默认python库(指numpy)外，无需安装多个第三方python库。不会像别的项目一样，因为依赖库的更新、废弃而run error
 
 
-# 开发历史
+# 开发背景
 
-本项目
+经过我的搜索，github上80%的引力弹弓（引力辅助）项目基本上全了。首屈一指的项目是[ksptot](https://github.com/Arrowstar/ksptot)
+
