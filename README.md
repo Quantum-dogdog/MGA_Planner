@@ -46,6 +46,7 @@
 7.izzo.py 文件用于解决 Lambert 问题，取自[pykep](https://github.com/esa/pykep)，依据GPL-3.0 license对其进行了微调，使其不再依赖外部hypergeometric_f函数。
 
 8.main.py 文件实现了一个差分进化算法，用于优化空间任务中的飞行总时间、深空机动时刻的比例系数、轨道高度、弹弓角度等参数，没有优化发射日期、发射序列、发射速度等参数，但是也可以了不是吗。
+需要注意的是，目前main.py文件里我只写了飞行序列为3的代码，如果你想写飞行序列为4或5的代码，你需要改objective_function、agent、ranges。
 
 9.mgadsm.py 文件可以根据输入的序列长度（表示空间任务的复杂性），调用不同的子函数（mga_dsm_2, mga_dsm_3, mga_dsm_4, mga_dsm_5: 这些子函数分别处理长度为2、3、4、5的序列）来计算总速度变化量（delta-v），你可以看到我写的代码是低端代码，远不如[KSP-MGA-Planner](https://github.com/Krafpy/KSP-MGA-Planner)中抽象、高等。
 
