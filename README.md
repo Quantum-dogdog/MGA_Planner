@@ -9,7 +9,7 @@
 
   （1）纯python，代码逻辑简单易懂，不和C++掺和，不用下载matlab
 
-  （2）免部署，no need setup，no need build，no need install，下载到本地之后，直接在cmd里>>python main.py运行或者用python自带的IDLE打开main.py
+  （2）免部署，no need setup，no need build，no need install，下载到本地之后，在cmd里cd到解压后的文件夹内 >> python main.py运行或者用python自带的IDLE打开main.py
 
   （3）零依赖，除默认python库(指numpy)外，无需安装多个第三方python库。不会像别的项目一样，因为依赖库的更新、废弃而run error
 
